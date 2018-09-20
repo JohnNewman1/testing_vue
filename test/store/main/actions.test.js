@@ -9,9 +9,12 @@ describe('actions', () => {
   let resp;
   console.error = jest.fn();
 
-  it('When promise resolves runs commit with correct arguments', async () => {
+  beforeEach(() => {
     commit = jest.fn();
     state = jest.fn();
+  })
+
+  it('When promise resolves runs commit with correct arguments', async () => {
     resp = 'success'
     api.getThemAll.mockImplementation(() => Promise.resolve(resp));
     await action.CATCH_THEM_ALL({commit, state})
